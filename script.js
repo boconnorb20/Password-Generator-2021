@@ -2,10 +2,10 @@
 
 // Creating variables for the password criteria
 var length = 0;
-var lower = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',];
-var upper = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',];
-var symbols = ['!','@','#','$','%','&','*','=','+','?',];
-var numbers = ['0','1','2','3','4','5','6','7','8','9',];
+var lowerCase = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',];
+var upperCase = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',];
+var symbolsArr = ['!','@','#','$','%','&','*','=','+','?',];
+var numbersArr = ['0','1','2','3','4','5','6','7','8','9',];
 
 
 // Generate password length
@@ -30,16 +30,16 @@ function generatePasswordChoice() {
    lower:lower,
    upper:upper,
    symbols:symbols,
-   numbers:numbers
+   numbers:numbers,
 
  }
  return passwordChoice
 
 } 
 
-function randomChoice(array){
-  var randomE = array [randomI];
+function randomChoice(array) {
   var randomI = Math.floor(Math.random()* array.length) 
+  var randomE = array [randomI];
   return randomE
   
 }
@@ -58,12 +58,12 @@ function generatePassword() {
     gChar.push(randomChoice(upperCase))
   }
   if (choice.symbols) {
-    pChar = pChar.concat (sChar)
-    gChar.push(randomChoice(sChar))
+    pChar = pChar.concat (symbolsArr)
+    gChar.push(randomChoice(symbolsArr))
   }
   if (choice.numbers) {
-    pChar = pChar.concat (nChar)
-    gChar.push(randomChoice(nChar))
+    pChar = pChar.concat (numbersArr)
+    gChar.push(randomChoice(numbersArr))
   }
   for (var i = 0; i < choice.length; i++){
     var myChar = randomChoice(pChar)
@@ -88,4 +88,4 @@ function writePassword() {
 }
 
   // Add event listener to generate button
-generateBtn.addEventListener ("click", (writePassword)());
+generateBtn.addEventListener ("click", writePassword);
